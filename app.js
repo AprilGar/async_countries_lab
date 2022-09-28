@@ -2,8 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     //check dom was loaded correctly
     console.log("DOM loaded");
-  
-   
 
     const getCountries = async () => {
         
@@ -13,19 +11,19 @@ document.addEventListener("DOMContentLoaded", () => {
         // the data is an array of objects
         const jsonData = await response.json();
         const countriesData = jsonData;
-        // make a map of each countries  from the data array
-        const countriesNames = countriesData.map((country) => country.name);
-        console.log(countriesNames);
 
+        // make a map of each countries from the data array
+        const countriesNames = countriesData.map((country) => country.name);
+        const countriesCommon = countriesNames.map((countryName) => countryName.common); 
         // want a list of items 
         // will need to loop through all items and append to list
         // this will find the first list and as I only have 1 this if fine
         const countriesUl = document.querySelector("ul")
-        countriesNames.forEach((countryName) => {
+        countriesCommon.forEach((countryCommonName) => {
             // make a list element 
             const nameLi = document.createElement("Li");
             // set content to country name 
-            nameLi.textContent = countryName;
+            nameLi.textContent = countryCommonName;
             countriesUl.appendChild(nameLi);
         });
 
